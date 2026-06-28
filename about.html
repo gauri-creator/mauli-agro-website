@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – Mauli Agro Industries</title>
+  <meta name="description" content="Learn about Mauli Agro Industries – a family-owned premium turmeric export business from Maharashtra, India." />
+
+  <link rel="icon" type="image/jpeg" href="Media/Images/logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito+Sans:wght@300;400;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
+
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      min-height: 420px;
+      background: linear-gradient(135deg, rgba(20,10,0,0.88) 0%, rgba(60,30,0,0.82) 100%),
+                  url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1800&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 4rem;
+      position: relative;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .breadcrumb-custom {
+      font-family: var(--font-cinzel);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1rem;
+    }
+    .breadcrumb-custom a { color: var(--gold); text-decoration: none; }
+    .breadcrumb-custom span { margin: 0 8px; }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+    }
+    .page-hero .gold-text { color: var(--gold); }
+
+    /* FOUNDERS */
+    .founders-section { padding: 6rem 0; background: var(--off-white); }
+    .founder-card {
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .founder-card:hover { transform: translateY(-6px); box-shadow: 0 16px 56px rgba(255,193,7,0.15); }
+    .founder-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--dark2), var(--dark));
+    }
+    .founder-img-placeholder {
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(135deg, #2c1f0a, #1a1208);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .founder-img-placeholder i { font-size: 5rem; color: rgba(255,193,7,0.3); }
+    .founder-body { padding: 2rem; }
+    .founder-title {
+      font-family: var(--font-cinzel);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .founder-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+    .founder-body p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; }
+
+    /* STORY TIMELINE */
+    .story-section { padding: 6rem 0; background: var(--dark); position: relative; overflow: hidden; }
+    .story-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--orange), var(--gold));
+    }
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--orange));
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3rem 2.5rem;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -10px;
+      top: 4px;
+      width: 22px;
+      height: 22px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 3px solid var(--dark);
+      box-shadow: 0 0 0 3px rgba(255,193,7,0.3);
+    }
+    .timeline-year {
+      font-family: var(--font-cinzel);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .timeline-text { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.8; }
+
+    /* VALUES */
+    .values-section { padding: 6rem 0; background: var(--off-white); }
+    .value-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: var(--transition);
+      height: 100%;
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(255,193,7,0.12);
+      border-color: var(--gold);
+    }
+    .value-icon {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 6px 20px rgba(255,193,7,0.3);
+    }
+    .value-icon i { font-size: 1.8rem; color: var(--dark); }
+    .value-card h5 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+    .value-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; margin: 0; }
+
+    /* STATS */
+    .stats-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--dark2), var(--dark));
+    }
+    .big-stat {
+      text-align: center;
+      padding: 1.5rem;
+      border-right: 1px solid rgba(255,193,7,0.15);
+    }
+    .big-stat:last-child { border-right: none; }
+    .big-stat .num {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .big-stat .lbl {
+      font-family: var(--font-cinzel);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-section { padding: 5rem 0; background: var(--off-white); }
+    .cert-badge {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: var(--transition);
+    }
+    .cert-badge:hover {
+      border-color: var(--gold);
+      box-shadow: 0 4px 20px rgba(255,193,7,0.1);
+      transform: translateY(-2px);
+    }
+    .cert-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cert-icon i { font-size: 1.5rem; color: var(--dark); }
+    .cert-badge h6 {
+      font-family: var(--font-cinzel);
+      font-size: 0.8rem;
+      color: var(--dark);
+      margin-bottom: 3px;
+      letter-spacing: 1px;
+    }
+    .cert-badge p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+
+    /* CTA */
+    .about-cta {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, rgba(20,10,0,0.95), rgba(60,30,0,0.92)),
+                  url('https://images.unsplash.com/photo-1607920592519-bab8a49dbb7e?w=1800&q=80') center/cover no-repeat;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="navbar-brand-inner">
+        <img src="Media/Images/logo(1).jpeg" alt="Mauli Agro Industries" class="nav-logo-img" />
+        <div class="nav-brand-text">
+          <span class="nav-brand-name">MAULI AGRO</span>
+          <span class="nav-brand-sub">INDUSTRIES</span>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="inquiry.html">Inquire</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-gold" href="index.html#contact">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb-custom"><a href="index.html">Home</a><span>/</span>About Us</div>
+    <h1>Our Story,<br><span class="gold-text">Our Heritage</span></h1>
+  </div>
+</section>
+
+<!-- ABOUT INTRO -->
+<section style="padding:6rem 0; background:var(--off-white);">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="about-image-stack">
+          <img src="https://images.unsplash.com/photo-1607920592519-bab8a49dbb7e?w=700&q=80" alt="Turmeric farm" class="about-img-main" />
+          <img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=400&q=80" alt="Turmeric roots" class="about-img-secondary" />
+          <div class="about-years-badge"><span class="num">10+</span><span class="lbl">Years of Trust</span></div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">Maharashtra's Premier<br><span class="gold-text">Turmeric Export House</span></h2>
+        <p class="lead-para">Mauli Agro Industries is a family-owned agro export business founded by <strong>Nilkanth Kadam</strong> and <strong>Babarao Kadam</strong>, rooted in the agricultural heartland of Basmat, Hingoli, Maharashtra.</p>
+        <p style="color:var(--text-muted); margin-bottom:1rem;">We source the finest turmeric varieties directly from farming communities across India — from Lakadong's high-curcumin hills of Meghalaya to Kerala's finger-rich Alleppey fields — ensuring farm-to-export integrity at every step.</p>
+        <p style="color:var(--text-muted);">Our commitment is simple: deliver the purest, most potent turmeric to global buyers while empowering Indian farmers with fair trade pricing and sustainable practices.</p>
+        <a href="inquiry.html" class="btn btn-gold mt-4">Work With Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section class="founders-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label">Leadership</div>
+      <h2 class="section-title">Meet Our <span class="gold-text">Founders</span></h2>
+      <p class="section-sub">The family behind India's trusted turmeric export house</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="0">
+        <div class="founder-card">
+          <div class="founder-img-placeholder">
+            <i class="bi bi-person-circle"></i>
+          </div>
+          <div class="founder-body">
+            <div class="founder-title">Co-Founder &amp; Director</div>
+            <div class="founder-name">Nilkanth Kadam</div>
+            <p>With deep roots in Maharashtra's agricultural landscape, Nilkanth brings decades of farming knowledge and export expertise. His vision to bridge Indian farms with global markets founded Mauli Agro Industries and set its gold standard.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="100">
+        <div class="founder-card">
+          <div class="founder-img-placeholder">
+            <i class="bi bi-person-circle"></i>
+          </div>
+          <div class="founder-body">
+            <div class="founder-title">Co-Founder &amp; Operations Head</div>
+            <div class="founder-name">Babarao Kadam</div>
+            <p>Babarao oversees operations, quality control, and farmer relations. His hands-on approach to each harvest season and meticulous attention to quality testing has made Mauli Agro a trusted name among global importers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY TIMELINE -->
+<section class="story-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label" style="color:var(--gold);">Our Journey</div>
+      <h2 class="section-title" style="color:#fff;">A Decade of <span class="gold-text">Excellence</span></h2>
+    </div>
+    <div class="timeline" data-aos="fade-up">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2013 – The Beginning</div>
+        <div class="timeline-title">Founded in Basmat, Hingoli</div>
+        <p class="timeline-text">Nilkanth and Babarao Kadam established Mauli Agro Industries with a singular focus — to bring Maharashtra's finest turmeric to national markets with full farm-to-buyer transparency.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2015 – Quality First</div>
+        <div class="timeline-title">FSSAI Certification &amp; Lab Testing</div>
+        <p class="timeline-text">We tied up with NABL-accredited labs for batch-level curcumin and pesticide testing — setting a new quality benchmark that soon became our signature promise to buyers.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2017 – Going Global</div>
+        <div class="timeline-title">First International Export</div>
+        <p class="timeline-text">Our first international shipment of Lakadong and Alleppey Finger turmeric reached buyers in Singapore and Dubai — marking the start of our global journey.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2020 – Expanding Varieties</div>
+        <div class="timeline-title">6 Premium Varieties Portfolio</div>
+        <p class="timeline-text">We expanded sourcing to include Waigaon GI-tagged, Kandhamal Haladi, Salem/Erode, and Rajapuri — offering buyers a complete Indian turmeric catalogue under one trusted roof.</p>
+      </div>
+      <div class="timeline-item" style="padding-bottom:0;">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2023–Present</div>
+        <div class="timeline-title">15+ Countries, Growing Strong</div>
+        <p class="timeline-text">Today we export to 15+ countries across Asia, Europe, Middle East, and the Americas — with a growing network of farmer partners and a reputation for unmatched purity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label">What Drives Us</div>
+      <h2 class="section-title">Our Core <span class="gold-text">Values</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-heart-fill"></i></div>
+          <h5>Farmer First</h5>
+          <p>We pay fair prices to farmers and build long-term relationships rooted in mutual respect and trust.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-shield-check"></i></div>
+          <h5>Uncompromised Purity</h5>
+          <p>Every batch is lab-tested. No shortcuts, no adulterants — just the purest turmeric nature can produce.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-leaf"></i></div>
+          <h5>Sustainable Farming</h5>
+          <p>We promote organic, chemical-free cultivation practices that protect soil health and ecosystems.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-handshake"></i></div>
+          <h5>Trust &amp; Transparency</h5>
+          <p>Open communication, honest pricing, and consistent quality make us a partner you can rely on.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0"><div class="big-stat"><span class="num stat-num">10+</span><span class="lbl">Years of Experience</span></div></div>
+      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="80"><div class="big-stat"><span class="num stat-num">6+</span><span class="lbl">Turmeric Varieties</span></div></div>
+      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="160"><div class="big-stat"><span class="num stat-num">15+</span><span class="lbl">Export Countries</span></div></div>
+      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="240"><div class="big-stat" style="border-right:none;"><span class="num stat-num">100+</span><span class="lbl">Farmer Partners</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label">Compliance &amp; Standards</div>
+      <h2 class="section-title">Our <span class="gold-text">Certifications</span></h2>
+      <p class="section-sub">We meet global standards so your business never faces compliance hurdles</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="cert-badge"><div class="cert-icon"><i class="bi bi-patch-check-fill"></i></div><div><h6>FSSAI Certified</h6><p>Food safety standards met at every stage</p></div></div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="60">
+        <div class="cert-badge"><div class="cert-icon"><i class="bi bi-award-fill"></i></div><div><h6>APEDA Registered</h6><p>Authorized agro export by APEDA India</p></div></div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
+        <div class="cert-badge"><div class="cert-icon"><i class="bi bi-leaf"></i></div><div><h6>Organic Certified</h6><p>NPOP / NOP organic certification available</p></div></div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
+        <div class="cert-badge"><div class="cert-icon"><i class="bi bi-flask"></i></div><div><h6>NABL Lab Tested</h6><p>Curcumin &amp; pesticide reports per batch</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <div class="container" data-aos="fade-up">
+    <div class="section-label light">Ready to Partner?</div>
+    <h2 class="section-title text-white" style="margin-bottom:1.5rem;">Start Your <span class="gold-text">Turmeric Journey</span> With Us</h2>
+    <p style="color:rgba(255,255,255,0.65); max-width:520px; margin:0 auto 2rem; font-size:1.05rem;">Explore our product range or send us a business inquiry. We respond within 24 hours.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="products.html" class="btn btn-gold btn-lg">View Products</a>
+      <a href="inquiry.html" class="btn btn-outline-light btn-lg">Send Inquiry</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6"><p>&copy; 2024 Mauli Agro Industries. All rights reserved.</p></div>
+        <div class="col-md-6 text-md-end"><p>Nanded Road, Malvata, Basmat, Hingoli, Maharashtra</p></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919999999999?text=Hello%20Mauli%20Agro%2C%20I%20am%20interested%20in%20your%20turmeric%20products." class="whatsapp-float" target="_blank"><i class="bi bi-whatsapp"></i><span class="wa-pulse"></span></a>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+$(function(){
+  $(window).on('scroll',function(){
+    var s=$(this).scrollTop();
+    s>80?$('#mainNav').addClass('scrolled'):$('#mainNav').removeClass('scrolled');
+    s>400?$('#backToTop').addClass('visible'):$('#backToTop').removeClass('visible');
+  });
+  $('#backToTop').on('click',function(){ $('html,body').animate({scrollTop:0},600); });
+  if(typeof AOS!=='undefined') AOS.init({once:true,offset:60,duration:700});
+
+  // Counter animation
+  function animateCounters(){
+    $('.stat-num').each(function(){
+      if($(this).data('animated')) return;
+      var $el=$(this), elTop=$el.offset().top;
+      if($(window).scrollTop()+$(window).height()>elTop+80){
+        $el.data('animated',true);
+        var target=parseInt($el.text().replace(/\D/g,''),10);
+        var suffix=$el.text().replace(/[0-9]/g,'');
+        var count=0, increment=Math.ceil(target/60);
+        var timer=setInterval(function(){
+          count+=increment;
+          if(count>=target){count=target;clearInterval(timer);}
+          $el.text(count+suffix);
+        },25);
+      }
+    });
+  }
+  $(window).on('scroll',animateCounters); animateCounters();
+});
+</script>
+</body>
+</html>

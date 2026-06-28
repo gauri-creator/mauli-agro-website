@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inquiry – Mauli Agro Industries</title>
+  <meta name="description" content="Send an inquiry to Mauli Agro Industries for turmeric products, samples, and custom orders." />
+
+  <link rel="icon" type="image/jpeg" href="Media/Images/logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito+Sans:wght@300;400;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
+
+  <style>
+    .page-hero {
+      min-height: 420px;
+      background: linear-gradient(135deg, rgba(20,10,0,0.88) 0%, rgba(60,30,0,0.82) 100%),
+                  url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1800&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 4rem;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .breadcrumb-custom {
+      font-family: var(--font-cinzel);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1rem;
+    }
+    .breadcrumb-custom a { color: var(--gold); text-decoration: none; }
+    .breadcrumb-custom span { margin: 0 8px; }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    /* INQUIRY SECTION */
+    .inquiry-section { padding: 5rem 0; background: var(--off-white); }
+    .inquiry-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; }
+    @media (max-width: 992px) {
+      .inquiry-container { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* FORM CARD */
+    .form-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+    .form-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .form-card-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* FORM GROUPS */
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label {
+      font-family: var(--font-cinzel);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+    .form-control {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      transition: var(--transition);
+      background: #fff;
+    }
+    .form-control:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(255,193,7,0.1);
+      outline: none;
+    }
+    .form-control::placeholder { color: rgba(0,0,0,0.3); }
+    textarea.form-control { resize: vertical; min-height: 120px; }
+
+    /* PRODUCT SELECT GRID */
+    .product-select-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .product-select-item {
+      position: relative;
+    }
+    .product-select-item input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .product-select-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+      background: #fff;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .product-select-item input:checked + .product-select-label {
+      background: rgba(255,193,7,0.1);
+      border-color: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+    }
+    .product-select-label::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      transition: var(--transition);
+      background: #fff;
+    }
+    .product-select-item input:checked + .product-select-label::before {
+      background: var(--gold);
+      border-color: var(--gold);
+      box-shadow: inset 0 0 0 2px #fff;
+    }
+
+    /* QUANTITY SELECTOR */
+    .quantity-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .qty-input {
+      width: 80px;
+      text-align: center;
+    }
+    .qty-unit {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* SUBMIT BUTTON */
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      border-radius: 12px;
+      font-family: var(--font-cinzel);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+    .btn-submit:hover {
+      background: var(--orange);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,193,7,0.3);
+    }
+
+    /* INFO CARD */
+    .info-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+    .info-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 2rem;
+    }
+
+    /* INFO ITEMS */
+    .info-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .info-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .info-content h6 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+    .info-content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .info-content a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .info-content a:hover { text-decoration: underline; }
+
+    /* WHY INQUIRE */
+    .why-section { padding: 4rem 0; background: #fff; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .why-card {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .why-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255,193,7,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.6rem;
+      color: var(--gold);
+    }
+    .why-card h5 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .why-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* RESPONSE MESSAGE */
+    .alert {
+      border-radius: 12px;
+      border: 1px solid;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .alert-success {
+      background: rgba(76,175,80,0.1);
+      border-color: #4CAF50;
+      color: #2e7d32;
+    }
+    .alert-error {
+      background: rgba(244,67,54,0.1);
+      border-color: #f44336;
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="navbar-brand-inner">
+        <img src="Media/Images/logo(1).jpeg" alt="Mauli Agro Industries" class="nav-logo-img" />
+        <div class="nav-brand-text">
+          <span class="nav-brand-name">MAULI AGRO</span>
+          <span class="nav-brand-sub">INDUSTRIES</span>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link active" href="inquiry.html">Inquire</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-gold" href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb-custom"><a href="index.html">Home</a><span>/</span>Inquiry</div>
+    <h1>Send Your <span class="gold-text">Inquiry</span></h1>
+  </div>
+</section>
+
+<!-- INQUIRY SECTION -->
+<section class="inquiry-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Request Samples or <span class="gold-text">Place an Order</span></h2>
+      <p class="section-sub">Fill out the form below and our team will respond within 24 hours</p>
+    </div>
+
+    <div class="inquiry-container" data-aos="fade-up">
+      
+      <!-- FORM -->
+      <div class="form-card">
+        <h3>Send Inquiry</h3>
+        <p class="form-card-sub">Tell us about your requirements and we'll provide a personalized quote.</p>
+        
+        <form id="inquiryForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <div id="formMessage"></div>
+
+          <!-- PERSONAL INFO -->
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input type="text" class="form-control" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input type="email" class="form-control" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input type="tel" class="form-control" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Company / Organization</label>
+            <input type="text" class="form-control" name="company" />
+          </div>
+
+          <!-- PRODUCT SELECTION -->
+          <div class="form-group">
+            <label class="form-label" style="margin-bottom: 1rem;">Select Products *</label>
+            <div class="product-select-grid">
+              <div class="product-select-item">
+                <input type="checkbox" id="lakadong" name="products" value="Lakadong" />
+                <label for="lakadong" class="product-select-label">Lakadong</label>
+              </div>
+              <div class="product-select-item">
+                <input type="checkbox" id="alleppey" name="products" value="Alleppey Finger" />
+                <label for="alleppey" class="product-select-label">Alleppey Finger</label>
+              </div>
+              <div class="product-select-item">
+                <input type="checkbox" id="salem" name="products" value="Salem/Erode" />
+                <label for="salem" class="product-select-label">Salem/Erode</label>
+              </div>
+              <div class="product-select-item">
+                <input type="checkbox" id="rajapuri" name="products" value="Rajapuri" />
+                <label for="rajapuri" class="product-select-label">Rajapuri</label>
+              </div>
+              <div class="product-select-item">
+                <input type="checkbox" id="waigaon" name="products" value="Waigaon" />
+                <label for="waigaon" class="product-select-label">Waigaon</label>
+              </div>
+              <div class="product-select-item">
+                <input type="checkbox" id="kandhamal" name="products" value="Kandhamal Haladi" />
+                <label for="kandhamal" class="product-select-label">Kandhamal</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRODUCT FORM -->
+          <div class="form-group">
+            <label class="form-label">Preferred Product Form</label>
+            <select class="form-control" name="form">
+              <option value="">Select Form</option>
+              <option value="Raw Rhizomes">Raw Rhizomes</option>
+              <option value="Polished Fingers">Polished Fingers</option>
+              <option value="Turmeric Powder">Turmeric Powder</option>
+              <option value="Curcumin Extract">Curcumin Extract</option>
+            </select>
+          </div>
+
+          <!-- QUANTITY -->
+          <div class="form-group">
+            <label class="form-label">Estimated Quantity</label>
+            <div class="quantity-group">
+              <input type="number" class="form-control qty-input" name="quantity" min="0" />
+              <select class="form-control" name="unit" style="flex:1;">
+                <option>KG</option>
+                <option>MT (Metric Tonnes)</option>
+                <option>Containers</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- MESSAGE -->
+          <div class="form-group">
+            <label class="form-label">Additional Requirements</label>
+            <textarea class="form-control" name="message" placeholder="Tell us about any special requirements, certifications needed, or packaging preferences..."></textarea>
+          </div>
+
+          <!-- CHECKBOX -->
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="agreeTerms" name="agree" required />
+              <label class="form-check-label" for="agreeTerms" style="font-size: 0.85rem; color: var(--text-muted);">
+                I agree to share my contact information for inquiry follow-up
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit Inquiry</button>
+        </form>
+      </div>
+
+      <!-- INFO PANEL -->
+      <div class="info-card">
+        <h3>Contact Information</h3>
+
+        <div class="info-item">
+          <div class="info-icon"><i class="bi bi-geo-alt"></i></div>
+          <div class="info-content">
+            <h6>Our Address</h6>
+            <p>Nanded Road, Malvata, Basmat<br>Hingoli, Maharashtra 431117<br>India</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon"><i class="bi bi-telephone"></i></div>
+          <div class="info-content">
+            <h6>Phone</h6>
+            <p><a href="tel:+919999999999">+91 9999 999 999</a><br><a href="tel:+919876543210">+91 9876 543 210</a></p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon"><i class="bi bi-envelope"></i></div>
+          <div class="info-content">
+            <h6>Email</h6>
+            <p><a href="mailto:inquiry@mauliagro.com">inquiry@mauliagro.com</a><br><a href="mailto:export@mauliagro.com">export@mauliagro.com</a></p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon"><i class="bi bi-chat-dots"></i></div>
+          <div class="info-content">
+            <h6>WhatsApp</h6>
+            <p><a href="https://wa.me/919999999999" target="_blank">Start a conversation on WhatsApp</a></p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon"><i class="bi bi-clock"></i></div>
+          <div class="info-content">
+            <h6>Response Time</h6>
+            <p>We typically respond to inquiries within <strong>24 hours</strong> on business days.</p>
+          </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+          <h6 style="font-family: var(--font-display); font-weight: 700; color: var(--dark); margin-bottom: 1rem;">Quick Links</h6>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="products.html" style="color: var(--gold); text-decoration: none; font-size: 0.9rem;">→ Browse All Products</a>
+            <a href="gallery.html" style="color: var(--gold); text-decoration: none; font-size: 0.9rem;">→ View Gallery</a>
+            <a href="about.html" style="color: var(--gold); text-decoration: none; font-size: 0.9rem;">→ Learn About Us</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-title">Why <span class="gold-text">Inquire with Us?</span></h2>
+    </div>
+    
+    <div class="why-grid" data-aos="fade-up">
+      <div class="why-card">
+        <div class="why-icon"><i class="bi bi-lightning-fill"></i></div>
+        <h5>Fast Response</h5>
+        <p>24-hour turnaround on all inquiries with personalized attention</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="bi bi-check2-circle"></i></div>
+        <h5>Quality Assured</h5>
+        <p>Lab certified, export grade, tested for purity and potency</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="bi bi-globe"></i></div>
+        <h5>Global Shipping</h5>
+        <p>Export-ready packaging and worldwide logistics support</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="bi bi-percent"></i></div>
+        <h5>Competitive Pricing</h5>
+        <p>Best market rates with volume discounts available</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="bi bi-basket3"></i></div>
+        <h5>Flexible Orders</h5>
+        <p>Bulk orders, samples, or custom requirements welcome</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="bi bi-shield-check"></i></div>
+        <h5>Certified Supplier</h5>
+        <p>ISO certified with all compliance documentation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6"><p>&copy; 2024 Mauli Agro Industries. All rights reserved.</p></div>
+        <div class="col-md-6 text-md-end"><p>Nanded Road, Malvata, Basmat, Hingoli, Maharashtra</p></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919999999999?text=Hello%20Mauli%20Agro%2C%20I%20am%20interested%20in%20your%20turmeric%20products." class="whatsapp-float" target="_blank"><i class="bi bi-whatsapp"></i><span class="wa-pulse"></span></a>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+$(function(){
+  $(window).on('scroll',function(){
+    var s=$(this).scrollTop();
+    s>80?$('#mainNav').addClass('scrolled'):$('#mainNav').removeClass('scrolled');
+    s>400?$('#backToTop').addClass('visible'):$('#backToTop').removeClass('visible');
+  });
+  $('#backToTop').on('click',function(){ $('html,body').animate({scrollTop:0},600); });
+  if(typeof AOS!=='undefined') AOS.init({once:true,offset:60,duration:700});
+
+  // Form submission
+  $('#inquiryForm').on('submit', function(e){
+    e.preventDefault();
+    
+    var formData = new FormData(this);
+    var name = $('input[name="name"]').val();
+    var email = $('input[name="email"]').val();
+    var products = $('input[name="products"]:checked').map(function(){ return this.value; }).get();
+    
+    if(!name || !email){
+      $('#formMessage').html('<div class="alert alert-error"><i class="bi bi-exclamation-circle"></i> Please fill in all required fields</div>');
+      return;
+    }
+
+    if(products.length === 0){
+      $('#formMessage').html('<div class="alert alert-error"><i class="bi bi-exclamation-circle"></i> Please select at least one product</div>');
+      return;
+    }
+
+    // Create message text with selected products
+    var productsText = products.join(', ');
+    var messageText = 'Products: ' + productsText + '\n' + 
+                      ($('textarea[name="message"]').val() || 'No additional requirements');
+    
+    // Update form for submission
+    var emailBody = 'Name: ' + name + '\n' +
+                   'Email: ' + email + '\n' +
+                   'Phone: ' + $('input[name="phone"]').val() + '\n' +
+                   'Company: ' + ($('input[name="company"]').val() || 'N/A') + '\n' +
+                   'Products: ' + productsText + '\n' +
+                   'Form: ' + ($('select[name="form"]').val() || 'Not specified') + '\n' +
+                   'Quantity: ' + ($('input[name="quantity"]').val() || 'Not specified') + ' ' + $('select[name="unit"]').val() + '\n\n' +
+                   'Message:\n' + ($('textarea[name="message"]').val() || 'No additional requirements');
+
+    // Simulate form submission (in production, use actual form backend)
+    $('#formMessage').html('<div class="alert alert-success"><i class="bi bi-check-circle"></i> Thank you! Your inquiry has been submitted. We\'ll contact you within 24 hours.</div>');
+    this.reset();
+    
+    // Scroll to message
+    $('html, body').animate({ scrollTop: $('#formMessage').offset().top - 100 }, 500);
+
+    // Optional: Send to email service
+    setTimeout(function(){
+      console.log('Inquiry submitted:', { name, email, products });
+    }, 1000);
+  });
+});
+</script>
+</body>
+</html>

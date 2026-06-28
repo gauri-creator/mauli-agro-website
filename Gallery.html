@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Mauli Agro Industries</title>
+  <meta name="description" content="View Mauli Agro's premium turmeric products, farm operations, processing facilities, and export quality photos." />
+
+  <link rel="icon" type="image/jpeg" href="Media/Images/logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito+Sans:wght@300;400;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
+
+  <style>
+    .page-hero {
+      min-height: 420px;
+      background: linear-gradient(135deg, rgba(20,10,0,0.88) 0%, rgba(60,30,0,0.82) 100%),
+                  url('https://images.unsplash.com/photo-1599909631564-4c1a2bfdf96e?w=1800&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 4rem;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .breadcrumb-custom {
+      font-family: var(--font-cinzel);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1rem;
+    }
+    .breadcrumb-custom a { color: var(--gold); text-decoration: none; }
+    .breadcrumb-custom span { margin: 0 8px; }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    /* GALLERY FILTER */
+    .gallery-section { padding: 5rem 0; background: var(--off-white); }
+    .gallery-filter {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .gallery-filter-btn {
+      font-family: var(--font-cinzel);
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      padding: 10px 24px;
+      border: 2px solid var(--border);
+      background: #fff;
+      color: var(--dark);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+    }
+    .gallery-filter-btn:hover,
+    .gallery-filter-btn.active {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* GALLERY GRID */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 4rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      transition: var(--transition);
+      height: 280px;
+      background: #f5f5f5;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(20,10,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+      backdrop-filter: blur(4px);
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 1.5rem 1rem 1rem;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+    .gallery-item-sm {
+      grid-column: span 1;
+    }
+    .gallery-item-lg {
+      grid-column: span 2;
+    }
+    @media (max-width: 768px) {
+      .gallery-item-lg { grid-column: span 1; }
+    }
+
+    /* MODAL */
+    .lightbox-container {
+      background: rgba(0,0,0,0.95);
+    }
+    .lightbox-image {
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    /* GALLERY STATS */
+    .gallery-stats {
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border-radius: 24px;
+      padding: 3rem;
+      margin: 3rem 0;
+    }
+    .stat-item {
+      text-align: center;
+      color: var(--dark);
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 900;
+      display: block;
+    }
+    .stat-label {
+      font-family: var(--font-cinzel);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    /* MASONRY LAYOUT */
+    .masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      auto-rows: 280px;
+      gap: 20px;
+      margin-bottom: 3rem;
+    }
+    .masonry-item:nth-child(3n+1) { grid-row: span 2; }
+    @media (max-width: 768px) {
+      .masonry-grid { auto-rows: 200px; }
+      .masonry-item:nth-child(3n+1) { grid-row: span 1; }
+    }
+
+    /* CTA */
+    .gallery-cta {
+      padding: 4rem 0;
+      background: linear-gradient(135deg, rgba(20,10,0,0.95), rgba(60,30,0,0.92)),
+                  url('https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=1800&q=80') center/cover no-repeat;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="navbar-brand-inner">
+        <img src="Media/Images/logo(1).jpeg" alt="Mauli Agro Industries" class="nav-logo-img" />
+        <div class="nav-brand-text">
+          <span class="nav-brand-name">MAULI AGRO</span>
+          <span class="nav-brand-sub">INDUSTRIES</span>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="inquiry.html">Inquire</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-gold" href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb-custom"><a href="index.html">Home</a><span>/</span>Gallery</div>
+    <h1>Our <span class="gold-text">Journey</span><br>Captured</h1>
+  </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label">Visual Story</div>
+      <h2 class="section-title">From <span class="gold-text">Farm to Export</span></h2>
+      <p class="section-sub">Experience the quality and authenticity of Mauli Agro through our visual gallery</p>
+    </div>
+
+    <!-- FILTER -->
+    <div class="gallery-filter" data-aos="fade-up">
+      <button class="gallery-filter-btn active" data-filter="all">All</button>
+      <button class="gallery-filter-btn" data-filter="products">Products</button>
+      <button class="gallery-filter-btn" data-filter="farm">Farm</button>
+      <button class="gallery-filter-btn" data-filter="processing">Processing</button>
+      <button class="gallery-filter-btn" data-filter="facility">Facility</button>
+    </div>
+
+    <!-- GALLERY GRID -->
+    <div class="masonry-grid" id="galleryGrid">
+      
+      <!-- PRODUCTS -->
+      <div class="masonry-item gallery-item products" data-aos="fade-up" data-aos-delay="0">
+        <a href="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=1200&q=80" data-lightbox="gallery" data-title="Lakadong Turmeric - Premium Quality">
+          <img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80" alt="Lakadong Turmeric" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Lakadong Premium</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item products" data-aos="fade-up" data-aos-delay="60">
+        <a href="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1200&q=80" data-lightbox="gallery" data-title="Alleppey Finger Turmeric">
+          <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80" alt="Alleppey Fingers" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Alleppey Fingers</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item products" data-aos="fade-up" data-aos-delay="120">
+        <a href="https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?w=1200&q=80" data-lightbox="gallery" data-title="Rajapuri Turmeric Bulbs">
+          <img src="https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?w=600&q=80" alt="Rajapuri Turmeric" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Rajapuri Bulbs</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item products" data-aos="fade-up" data-aos-delay="180">
+        <a href="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80" data-lightbox="gallery" data-title="Salem Erode Turmeric">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Salem Turmeric" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Salem Erode</div>
+        </a>
+      </div>
+
+      <!-- FARM -->
+      <div class="masonry-item gallery-item farm" data-aos="fade-up" data-aos-delay="240">
+        <a href="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&q=80" data-lightbox="gallery" data-title="Turmeric Field in Bloom">
+          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" alt="Turmeric Fields" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Field Operations</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item farm" data-aos="fade-up" data-aos-delay="300">
+        <a href="https://images.unsplash.com/photo-1625246333195-78d9c38ad576?w=1200&q=80" data-lightbox="gallery" data-title="Organic Farming Practices">
+          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad576?w=600&q=80" alt="Organic Farming" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Organic Methods</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item farm" data-aos="fade-up" data-aos-delay="360">
+        <a href="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=1200&q=80" data-lightbox="gallery" data-title="Fresh Harvest">
+          <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=600&q=80" alt="Harvest" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Harvest Season</div>
+        </a>
+      </div>
+
+      <!-- PROCESSING -->
+      <div class="masonry-item gallery-item processing" data-aos="fade-up" data-aos-delay="420">
+        <a href="https://images.unsplash.com/photo-1599909631564-4c1a2bfdf96e?w=1200&q=80" data-lightbox="gallery" data-title="Drying Process">
+          <img src="https://images.unsplash.com/photo-1599909631564-4c1a2bfdf96e?w=600&q=80" alt="Drying" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Drying Process</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item processing" data-aos="fade-up" data-aos-delay="480">
+        <a href="https://images.unsplash.com/photo-1607920592519-bab8a49dbb7e?w=1200&q=80" data-lightbox="gallery" data-title="Quality Control Lab">
+          <img src="https://images.unsplash.com/photo-1607920592519-bab8a49dbb7e?w=600&q=80" alt="Lab Testing" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Lab Testing</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item processing" data-aos="fade-up" data-aos-delay="540">
+        <a href="https://images.unsplash.com/photo-1576091160550-112173f7f869?w=1200&q=80" data-lightbox="gallery" data-title="Grinding & Milling">
+          <img src="https://images.unsplash.com/photo-1576091160550-112173f7f869?w=600&q=80" alt="Grinding" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Grinding</div>
+        </a>
+      </div>
+
+      <!-- FACILITY -->
+      <div class="masonry-item gallery-item facility" data-aos="fade-up" data-aos-delay="600">
+        <a href="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&q=80" data-lightbox="gallery" data-title="Modern Processing Facility">
+          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80" alt="Facility" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Processing Unit</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item facility" data-aos="fade-up" data-aos-delay="660">
+        <a href="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&q=80" data-lightbox="gallery" data-title="Storage & Warehouse">
+          <img src="https://images.unsplash.com/photo-1576091160550-112173f7f869?w=600&q=80" alt="Warehouse" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Storage</div>
+        </a>
+      </div>
+
+      <div class="masonry-item gallery-item facility" data-aos="fade-up" data-aos-delay="720">
+        <a href="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=1200&q=80" data-lightbox="gallery" data-title="Packaging & Export">
+          <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=600&q=80" alt="Packaging" />
+          <div class="gallery-overlay"><i class="bi bi-zoom-in" style="font-size: 2rem; color: var(--gold);"></i></div>
+          <div class="gallery-label">Packaging</div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="gallery-stats" data-aos="fade-up">
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="stat-item">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Gallery Images</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="stat-item">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Product Varieties</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="stat-item">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Processing Forms</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Quality Assured</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="gallery-cta">
+  <div class="container" data-aos="fade-up">
+    <div class="section-label light">Impressed by Our Quality?</div>
+    <h2 class="section-title text-white" style="margin-bottom:1.5rem;">Explore Our <span class="gold-text">Premium Products</span></h2>
+    <p style="color:rgba(255,255,255,0.65); max-width:520px; margin:0 auto 2rem; font-size:1.05rem;">Browse our complete range of turmeric varieties and place your order today.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="products.html" class="btn btn-gold btn-lg">View Products</a>
+      <a href="inquiry.html" class="btn btn-outline-light btn-lg">Request Sample</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6"><p>&copy; 2024 Mauli Agro Industries. All rights reserved.</p></div>
+        <div class="col-md-6 text-md-end"><p>Nanded Road, Malvata, Basmat, Hingoli, Maharashtra</p></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919999999999?text=Hello%20Mauli%20Agro%2C%20I%20am%20interested%20in%20your%20turmeric%20products." class="whatsapp-float" target="_blank"><i class="bi bi-whatsapp"></i><span class="wa-pulse"></span></a>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+<script>
+$(function(){
+  $(window).on('scroll',function(){
+    var s=$(this).scrollTop();
+    s>80?$('#mainNav').addClass('scrolled'):$('#mainNav').removeClass('scrolled');
+    s>400?$('#backToTop').addClass('visible'):$('#backToTop').removeClass('visible');
+  });
+  $('#backToTop').on('click',function(){ $('html,body').animate({scrollTop:0},600); });
+  if(typeof AOS!=='undefined') AOS.init({once:true,offset:60,duration:700});
+
+  // Gallery filter
+  $('.gallery-filter-btn').on('click',function(){
+    var filter=$(this).data('filter');
+    $('.gallery-filter-btn').removeClass('active');
+    $(this).addClass('active');
+    if(filter==='all'){
+      $('.masonry-item').each(function(){ $(this).removeClass('hidden').fadeIn(400); });
+    } else {
+      $('.masonry-item').each(function(){
+        if($(this).hasClass(filter)){ $(this).removeClass('hidden').fadeIn(400); }
+        else { $(this).addClass('hidden').fadeOut(400); }
+      });
+    }
+  });
+
+  // Lightbox config
+  lightbox.option({
+    'resizeDuration': 200,
+    'wrapAround': true,
+    'alwaysShowNavOnTouchDevices': true
+  });
+});
+</script>
+</body>
+</html>
